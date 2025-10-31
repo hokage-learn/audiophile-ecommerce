@@ -36,8 +36,6 @@ export const createOrder = mutation({
       .first();
 
     if (existingOrder) {
-      // Return existing order ID instead of creating duplicate
-      console.log(`Order ${args.orderId} already exists. Returning existing order.`);
       return existingOrder._id;
     }
 

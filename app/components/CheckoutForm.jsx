@@ -66,16 +66,11 @@ export default function CheckoutForm({ onSubmit, error, isSubmitting = false }) 
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, formikHelpers) => {
-        console.log('Form submitted with values:', values);
-        console.log('Form errors:', formikHelpers.errors);
         onSubmit(values, formikHelpers);
       }}
       enableReinitialize={false}
     >
       {({ values, errors, touched, setSubmitting, isSubmitting: formikIsSubmitting }) => {
-        // Prevent form submission if already submitting
-        const isCurrentlySubmitting = isSubmitting || formikIsSubmitting;
-        
         return (
         <Form 
           id="checkout-form" 

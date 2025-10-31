@@ -49,34 +49,23 @@ A pixel-perfect e-commerce website built with Next.js, React, Tailwind CSS, and 
 
 ### Environment Variables
 
-Create a `.env.local` file in the root directory:
+**⚠️ Important:** Convex environment variables must be set in Convex Dashboard (not `.env.local`)
 
+#### In Convex Dashboard:
+1. Go to https://dashboard.convex.dev
+2. Settings → Environment Variables
+3. Add these variables:
+   - `SMTP_HOST` → smtp.gmail.com
+   - `SMTP_PORT` → 587
+   - `SMTP_USER` → your-email@gmail.com
+   - `SMTP_PASSWORD` → your-app-password (16 characters, no spaces)
+   - `EMAIL_FROM` → your-email@gmail.com
+
+#### In `.env.local` (for Next.js):
 ```env
-# Convex
 NEXT_PUBLIC_CONVEX_URL=your_convex_url_here
-
-# Email (SMTP) - Required for checkout confirmation emails
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASSWORD=your-app-password
-EMAIL_FROM=your-email@gmail.com
-
-# Base URL (optional - defaults to localhost:3000)
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
-
-#### SMTP Configuration
-
-For Gmail:
-1. Enable 2-Factor Authentication
-2. Generate an App Password: https://myaccount.google.com/apppasswords
-3. Use the app password as `SMTP_PASSWORD`
-
-For other email providers, check their SMTP settings:
-- **Outlook/Hotmail:** smtp-mail.outlook.com:587
-- **SendGrid:** smtp.sendgrid.net:587 (requires API key)
-- **Mailgun:** smtp.mailgun.org:587
 
 ### Run Development Server
 
@@ -155,7 +144,7 @@ audiophille/
 
 ## Email Configuration
 
-The app uses Nodemailer to send order confirmation emails. Configure your SMTP settings in `.env.local`.
+The app uses Nodemailer to send order confirmation emails. Configure your SMTP settings in **Convex Dashboard**.
 
 **Email Template Includes:**
 - Customer greeting
@@ -176,13 +165,17 @@ The app uses Nodemailer to send order confirmation emails. Configure your SMTP s
 4. Deploy
 
 **Required Environment Variables:**
-- `NEXT_PUBLIC_CONVEX_URL`
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_USER`
-- `SMTP_PASSWORD`
-- `EMAIL_FROM`
-- `NEXT_PUBLIC_BASE_URL` (set to your deployed URL)
+
+**In Vercel Dashboard:**
+- `NEXT_PUBLIC_CONVEX_URL` → Your Convex production URL
+- `NEXT_PUBLIC_BASE_URL` → Your deployed Vercel URL
+
+**In Convex Dashboard (Settings → Environment Variables):**
+- `SMTP_HOST` → smtp.gmail.com
+- `SMTP_PORT` → 587
+- `SMTP_USER` → your-email@gmail.com
+- `SMTP_PASSWORD` → your-app-password
+- `EMAIL_FROM` → your-email@gmail.com
 
 ### Deploy to Netlify
 

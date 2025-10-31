@@ -48,9 +48,6 @@ export default function CheckoutPage() {
   }
 
   const handleSubmit = async (values, { setSubmitting: setFormikSubmitting }) => {
-    console.log('handleSubmit called with values:', values);
-    console.log('Cart length:', cart.length);
-    
     if (cart.length === 0) {
       setError('Your cart is empty. Please add items to your cart before checking out.');
       if (setFormikSubmitting) setFormikSubmitting(false);
@@ -58,12 +55,10 @@ export default function CheckoutPage() {
     }
 
     if (isSubmitting) {
-      console.log('Already submitting, skipping...');
       if (setFormikSubmitting) setFormikSubmitting(false);
-      return; // Prevent duplicate submissions
+      return;
     }
 
-    console.log('Starting order submission...');
     setIsSubmitting(true);
     setError(null);
     
@@ -146,15 +141,8 @@ export default function CheckoutPage() {
           totals: orderData.totals,
           emailHtml,
         });
-        
-        if (emailResult.success) {
-          console.log('✅ Email sent successfully');
-        } else {
-          console.warn('⚠️ Email not sent (SMTP not configured):', emailResult.error || 'Unknown error');
-        }
       } catch (emailError) {
-        console.warn('⚠️ Email sending error (order still saved):', emailError.message || emailError);
-        // Continue even if email fails - order is still saved
+        // Email failed but order is still saved
       }
 
       // Save cart data BEFORE clearing (for modal display)
@@ -182,7 +170,6 @@ export default function CheckoutPage() {
       // Modal will handle navigation when user clicks button
 
     } catch (err) {
-      console.error('Checkout error:', err);
       setError(err.message || 'Failed to process order. Please try again.');
       setIsSubmitting(false);
       setFormikSubmitting(false);
@@ -295,16 +282,6 @@ export default function CheckoutPage() {
                 className="w-full bg-[#D87D4A] text-white py-[15px] px-8 font-bold text-[13px] tracking-[1px] uppercase cursor-pointer transition-colors hover:bg-[#FBAF85] disabled:opacity-50 disabled:cursor-not-allowed mt-8"
                 disabled={cart.length === 0 || isSubmitting}
                 aria-busy={isSubmitting}
-                onClick={(e) => {
-                  // Prevent default if form validation will fail
-                  const form = document.getElementById('checkout-form');
-                  if (form) {
-                    console.log('Submit button clicked, form found:', form);
-                  } else {
-                    console.error('Form not found!');
-                    e.preventDefault();
-                  }
-                }}
               >
                 {isSubmitting ? 'PROCESSING...' : 'CONTINUE & PAY'}
               </button>

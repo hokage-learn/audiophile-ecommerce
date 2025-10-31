@@ -18,7 +18,7 @@ export function CartProvider({ children }) {
       try {
         setCart(JSON.parse(savedCart));
       } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
+        // Silently handle localStorage error
       }
     }
     // Mark initial mount as complete after a short delay to ensure cart state has updated
