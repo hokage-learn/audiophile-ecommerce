@@ -213,11 +213,3 @@ npm test
 2. Create a feature branch
 3. Make your changes
 4. Submit a pull request
-
-## License
-
-MIT
-
-## Support
-
-For issues or questions, please open an issue on GitHub.
