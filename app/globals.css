@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Screen reader only - for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-bg-light);
+  font-family: var(--font-family-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--breakpoint-desktop);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 165px;
+  }
+}
+
+/* 03 BUTTONS - Design System Styles */
+
+/* Button 1 - Primary (Orange) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 15px 30px;
+  border: none;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-subtitle);
+  letter-spacing: var(--letter-spacing-subtitle);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  font-family: var(--font-family-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-light);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button 2 - Secondary (Outlined) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-dark-gray);
+  padding: 15px 30px;
+  border: 1px solid var(--color-dark-gray);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-subtitle);
+  letter-spacing: var(--letter-spacing-subtitle);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+}
+
+/* Button 3 - Tertiary (Link style, like "SHOP >") */
+.btn-tertiary {
+  background-color: transparent;
+  color: var(--color-dark-gray);
+  padding: 0;
+  border: none;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-subtitle);
+  letter-spacing: var(--letter-spacing-subtitle);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  font-family: var(--font-family-primary);
+  text-decoration: none;
+}
+
+.btn-tertiary:hover {
+  color: var(--color-primary);
+}
+
+/* 04 FORM ELEMENTS - Design System Styles */
+
+/* Text Field - Default State */
+.form-input {
+  width: 100%;
+  padding: 18px 24px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-white);
+  color: var(--color-dark-gray);
+  font-family: var(--font-family-primary);
+  transition: border-color var(--transition-fast);
+}
+
+/* Text Field - Active/Focus State */
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-input::placeholder {
+  color: var(--color-dark-gray);
+  opacity: 0.4;
+}
+
+/* Text Field - Error State */
+.form-input.error {
+  border-color: var(--color-primary);
+}
+
+.error-message {
+  color: var(--color-primary);
+  font-size: var(--font-size-body);
+  margin-top: var(--spacing-xs);
+  display: block;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Radio Button - Default State */
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.radio-container:hover {
+  border-color: var(--color-primary-light);
+}
+
+/* Radio Button - Active/Checked State */
+.radio-container input[type="radio"]:checked + span,
+.radio-container:has(input[type="radio"]:checked) {
+  border-color: var(--color-primary);
+}
+
+.radio-input {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-dark-gray);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all var(--transition-fast);
+}
+
+.radio-input:checked {
+  border-color: var(--color-primary);
+}
+
+.radio-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Number Stepper - Default State */
+.number-stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background-color: var(--color-light-gray);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  width: fit-content;
+}
+
+.stepper-button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  padding: 0 var(--spacing-xs);
+  transition: all var(--transition-fast);
+  font-family: var(--font-family-primary);
+}
+
+.stepper-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.stepper-value {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark-gray);
+  min-width: 20px;
+  text-align: center;
+  font-family: var(--font-family-primary);
+}
+
+/* Heading Styles */
+.heading-1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  font-weight: var(--font-weight-bold);
+}
+
+.heading-2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-h2);
+  font-weight: var(--font-weight-bold);
+}
+
+.heading-3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-h3);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Text Styles */
+.overline {
+  font-size: var(--font-size-overline);
+  line-height: var(--line-height-overline);
+  letter-spacing: var(--letter-spacing-overline);
+  font-weight: var(--font-weight-normal);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-subtitle);
+  letter-spacing: var(--letter-spacing-subtitle);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.7s ease-out forwards;
+}
+
+/* Sound Wave Animation for ZX9 Speaker - Pulse without fade */
+@keyframes pulse-wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-pulse-wave {
+  animation: pulse-wave 3s ease-in-out infinite;
+}
+
+.animation-delay-1 {
+  animation-delay: 0.5s;
+}
+
+.animation-delay-2 {
+  animation-delay: 1s;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 300ms ease;
+}
+
+.animate-slideIn {
+  animation: slideIn 300ms ease;
+}
+
+.sound-wave-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.sound-wave-1 {
+  width: 944px;
+  height: 944px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse-wave 3s ease-in-out infinite;
+}
+
+.sound-wave-2 {
+  width: 800px;
+  height: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: pulse-wave 3s ease-in-out infinite 0.5s;
+}
+
+.sound-wave-3 {
+  width: 650px;
+  height: 650px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: pulse-wave 3s ease-in-out infinite 1s;
+}
